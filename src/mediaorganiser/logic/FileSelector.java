@@ -17,7 +17,7 @@ public class FileSelector {
 
     private int numberOfFiles = 0;
     private FileExtensionLogic fExtension;
-    private ArrayList<String>fileList;
+    private ArrayList<File>fileList;
 
     public FileSelector(String dir, String extension) {
 
@@ -31,11 +31,9 @@ public class FileSelector {
                 selectAllFiles(dir, "film");
             } else if ((fExtension.extensionCheck()).equals("music")) {
                 selectAllFiles(dir, "music");
-            } else {
-                System.err.println("Error extension type is not a valid music or video format");
-                System.exit(1);
             }
-        } else {
+        }
+         if(allFiles ==false) {
             selectType(dir, extension);
         }
     }
@@ -78,7 +76,9 @@ public class FileSelector {
     }
 
     //extension will equal film OR music only
-    public ArrayList<String> selectAllFiles(String dir, String extension) {
+    public ArrayList<File> selectAllFiles(String dir, String extension) {
+        
+        
         fileList = new ArrayList<>();
         int count = 0;
 
@@ -100,7 +100,7 @@ public class FileSelector {
                 for (FilmExtension film : FilmExtension.values()) {
                     if (film.name().equals(selExtension)) {
                         System.out.println(f.getName());
-                        fileList.add(f.getName());
+                        fileList.add(f);
                     }
                 }
             } else if (extension.equals("music")) {
@@ -108,7 +108,7 @@ public class FileSelector {
                 for (MusicExtension music : MusicExtension.values()) {
                     if (music.name().equals(selExtension)) {
                         System.out.println(f.getName());
-                        fileList.add(f.getName());
+                        fileList.add(f);
                     }
                 }
 
@@ -128,7 +128,7 @@ public class FileSelector {
         return fileList;
     }
 
-    public ArrayList<String> selectType(String dir, String extension) {
+    public ArrayList<File> selectType(String dir, String extension) {
 
         System.out.println(extension);
 
@@ -154,7 +154,7 @@ public class FileSelector {
                     if (selExtension.equals(extension)) {
                         System.out.println(f.getName());
                         if (!fileList.contains(f.getName())) {
-                            fileList.add(f.getName());
+                            fileList.add(f);
                         }
                         break;
                     }
@@ -164,7 +164,7 @@ public class FileSelector {
                     if (selExtension.equals(extension)) {
                         System.out.println(f.getName());
                         if (!fileList.contains(f.getName())) {
-                            fileList.add(f.getName());
+                            fileList.add(f);
                         }
                         break;
                     }
@@ -189,13 +189,13 @@ public class FileSelector {
         return fileList;
     }
     
-    public ArrayList<String> getFileList(){
+    public ArrayList<File> getFileList(){
         return fileList;
     }
 
 //    public static void main(String[] args) {
 //
-//       FileSelector fSelect = new FileSelector("D:\\Video\\porn", "mp4");
+//       FileSelector fSelect = new FileSelector("D:\\Video\\", "mp4");
 //        FileSelector fSelect = new FileSelector("C:\\Users\\Alex\\Desktop\\videos\\The Flash - Season 1 Complete-ChameE", "mkv");
 //    }
 
