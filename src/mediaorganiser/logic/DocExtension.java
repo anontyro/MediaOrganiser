@@ -9,12 +9,25 @@ package mediaorganiser.logic;
  *
  * @author Alex
  */
-public enum FilmExtension {
-    mpeg,
-    mpg,
-    avi,
-    mkv,
-    mp4,
-
- 
+public enum DocExtension {
+    doc,
+    docx,
+    txt,
+    pub,
+    pptx,
+    pdf,
+    pages,
+    epub,
+    oxps,
+    indd,
+    iwa,
+    p65,
+    btw,
+    edoc,
+    log,
+    msg,
+    rtf,
+    tex,
+    wpd,
+    wps,
 }

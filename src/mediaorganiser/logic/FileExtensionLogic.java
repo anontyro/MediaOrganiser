@@ -41,6 +41,12 @@ public class FileExtensionLogic {
             }
         }
         
+        for(DocExtension d: DocExtension.values()){
+            if(d.name().equals(userExtension)){
+                exType = "doc";
+            }
+        }
+        
         return exType;
     }
     

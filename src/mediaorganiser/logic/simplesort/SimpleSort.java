@@ -29,20 +29,19 @@ public class SimpleSort {
      * @param fileList array list of files to sort
      */
     public static void sortAZ(String dir, ArrayList<File> fileList) {
-        File directory = new File(dir);
+
         int count = 0;
-        for (File f : directory.listFiles()) {
+        for (File f : fileList) {
 
             for (SimpleSortAZ alpha : SimpleSortAZ.values()) {
 
-                if ((f.getName().substring(0, 1).toUpperCase()).equals(alpha.toString()) && f.isFile()) {
+                if ((f.getName().substring(0, 1).toUpperCase()).equals(alpha.toString()) ) {
                     count++;
                     String path = f.getAbsolutePath();
                     String fileName = path.substring(path.lastIndexOf(File.separatorChar));
-                    System.out.println(fileName);
                     path = path.substring(0, path.lastIndexOf(File.separatorChar));
                     path = path + File.separatorChar + alpha;
-                    System.out.println(path);
+
                     try {
                         if (!Files.exists(Paths.get(path))) {
                             Path dirPath = Paths.get(path);

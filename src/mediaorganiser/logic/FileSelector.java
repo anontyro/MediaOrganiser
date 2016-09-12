@@ -10,14 +10,15 @@ import java.text.Collator;
 import java.util.*;
 
 /**
- *
+ * A simple file selecting class that will prompt the user if they want all the files
+ * and go ahead and select them, currently only ALL works.
  * @author Alex
  */
 public class FileSelector {
 
     private int numberOfFiles = 0;
     private FileExtensionLogic fExtension;
-    private ArrayList<File>fileList;
+    private ArrayList<File> fileList;
 
     public FileSelector(String dir, String extension) {
 
@@ -31,29 +32,31 @@ public class FileSelector {
                 selectAllFiles(dir, "film");
             } else if ((fExtension.extensionCheck()).equals("music")) {
                 selectAllFiles(dir, "music");
+            } else if ((fExtension.extensionCheck()).equals("doc")) {
+                selectAllFiles(dir, "doc");
             }
         }
-         if(allFiles ==false) {
+        if (allFiles == false) {
             selectType(dir, extension);
         }
     }
 
-    public FileSelector(){
-        
+    public FileSelector() {
+
     }
 
     /*
      * Ask the user what they would like to do, select all of the files or
      * to only select one specific type with the filter
      */
-    public boolean filesToSelect() {
+    private boolean filesToSelect() {
         boolean allFiles = false;
         boolean loop = true;
         String userVal = "";
 
         while (loop == true) {
             Scanner input = new Scanner(System.in);
-            System.out.println("Select all files of Audio or Video? [Y]es or {N]o ");
+            System.out.println("Select all media files of type: audio, video, document? [Y]es or [N]o ");
             userVal = input.nextLine();
 
             userVal = userVal.trim().toLowerCase();
@@ -76,9 +79,8 @@ public class FileSelector {
     }
 
     //extension will equal film OR music only
-    public ArrayList<File> selectAllFiles(String dir, String extension) {
-        
-        
+    private ArrayList<File> selectAllFiles(String dir, String extension) {
+
         fileList = new ArrayList<>();
         int count = 0;
 
@@ -112,6 +114,15 @@ public class FileSelector {
                     }
                 }
 
+            } else if (extension.equals("doc")) {
+
+                for (DocExtension doc : DocExtension.values()) {
+                    if (doc.name().equals(selExtension)) {
+                        System.out.println(f.getName());
+                        fileList.add(f);
+                    }
+                }
+
             } else {
                 System.err.println("Error no extension selected");
                 System.exit(1);
@@ -128,7 +139,7 @@ public class FileSelector {
         return fileList;
     }
 
-    public ArrayList<File> selectType(String dir, String extension) {
+    private ArrayList<File> selectType(String dir, String extension) {
 
         System.out.println(extension);
 
@@ -169,6 +180,16 @@ public class FileSelector {
                         break;
                     }
                 }
+            } else if ((fExtension.extensionCheck()).equals("doc")) {
+                for (DocExtension doc : DocExtension.values()) {
+                    if (selExtension.equals(extension)) {
+                        System.out.println(f.getName());
+                        if (!fileList.contains(f.getName())) {
+                            fileList.add(f);
+                        }
+                        break;
+                    }
+                }
 
             } else {
                 System.err.println("Error no extension selected");
@@ -188,8 +209,8 @@ public class FileSelector {
 
         return fileList;
     }
-    
-    public ArrayList<File> getFileList(){
+
+    public ArrayList<File> getFileList() {
         return fileList;
     }
 
@@ -198,5 +219,4 @@ public class FileSelector {
 //       FileSelector fSelect = new FileSelector("D:\\Video\\", "mp4");
 //        FileSelector fSelect = new FileSelector("C:\\Users\\Alex\\Desktop\\videos\\The Flash - Season 1 Complete-ChameE", "mkv");
 //    }
-
 }

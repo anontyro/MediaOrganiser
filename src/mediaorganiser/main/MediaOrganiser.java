@@ -16,8 +16,8 @@ import mediaorganiser.logic.simplesort.SimpleSort;
  */
 public class MediaOrganiser {
     private static ArrayList<File>fileList;
-    private static String directory = "D:\\Video\\Films";
-    private static String extension = "avi";
+    private static String directory = "D:\\test";
+    private static String extension = "txt";
     /**
      * @param args the command line arguments
      */
@@ -30,8 +30,8 @@ public class MediaOrganiser {
                 System.out.println("copied to array");
                 fileList.toString();
                 
-        SimpleSort.sortAZ(directory, fileList);
-                System.out.println("Output from sort??");
+//        SimpleSort.sortAZ(directory, fileList);
+//                System.out.println("Output from sort??");
 
     }
     
