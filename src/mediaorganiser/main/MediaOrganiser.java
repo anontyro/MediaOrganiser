@@ -16,7 +16,7 @@ import mediaorganiser.logic.simplesort.SimpleSort;
  */
 public class MediaOrganiser {
     private static ArrayList<File>fileList;
-    private static String directory = "D:\\test";
+    private static String directory = "C:\\Users\\Alex\\Google Drive\\test";
     private static String extension = "txt";
     /**
      * @param args the command line arguments

@@ -11,7 +11,7 @@ import java.util.*;
 
 /**
  * A simple file selecting class that will prompt the user if they want all the files
- * and go ahead and select them, currently only ALL works.
+ * and go ahead and select them.
  * @author Alex
  */
 public class FileSelector {
@@ -22,6 +22,7 @@ public class FileSelector {
 
     public FileSelector(String dir, String extension) {
 
+        //creates an extension class using the extension specified
         fExtension = new FileExtensionLogic(extension);
 
         boolean allFiles = filesToSelect();
@@ -37,6 +38,7 @@ public class FileSelector {
             }
         }
         if (allFiles == false) {
+            
             selectType(dir, extension);
         }
     }
@@ -49,7 +51,7 @@ public class FileSelector {
      * Ask the user what they would like to do, select all of the files or
      * to only select one specific type with the filter
      */
-    private boolean filesToSelect() {
+    public boolean filesToSelect() {
         boolean allFiles = false;
         boolean loop = true;
         String userVal = "";
@@ -204,8 +206,8 @@ public class FileSelector {
         }
         System.out.println(count);
         System.out.println(fileList.toString());
-        fileList.sort(Collator.getInstance());
-        System.out.println(fileList.toString());
+        System.out.println("There are a total of: "+fileList.size() + " " 
+                + extension + " files out of: "+ count+ " in the current dir");
 
         return fileList;
     }
@@ -214,9 +216,4 @@ public class FileSelector {
         return fileList;
     }
 
-//    public static void main(String[] args) {
-//
-//       FileSelector fSelect = new FileSelector("D:\\Video\\", "mp4");
-//        FileSelector fSelect = new FileSelector("C:\\Users\\Alex\\Desktop\\videos\\The Flash - Season 1 Complete-ChameE", "mkv");
-//    }
 }

@@ -33,21 +33,26 @@ public class SimpleSort {
         int count = 0;
         for (File f : fileList) {
 
+            //runs through the enum values to check the first letters
             for (SimpleSortAZ alpha : SimpleSortAZ.values()) {
 
+                //checks the first character of the title and if it equals the enum will contiune
                 if ((f.getName().substring(0, 1).toUpperCase()).equals(alpha.toString()) ) {
-                    count++;
-                    String path = f.getAbsolutePath();
+                    count++; //add to the count for files processed
+                    String path = f.getAbsolutePath(); //gets the complete path
+                    
+                    //creates the new path for the file to be placed and folder from the enum
                     String fileName = path.substring(path.lastIndexOf(File.separatorChar));
                     path = path.substring(0, path.lastIndexOf(File.separatorChar));
                     path = path + File.separatorChar + alpha;
 
                     try {
+                        //check that the path doesn't exist if it doesn't it will create it
                         if (!Files.exists(Paths.get(path))) {
                             Path dirPath = Paths.get(path);
                             Files.createDirectories(dirPath);
                         }
-
+                        //if the path already exists it will move the file into the folder
                         Files.move(Paths.get(f.getAbsolutePath()), Paths.get(path + fileName));
                     } catch (IOException ex) {
                         System.err.println(ex.getMessage());
